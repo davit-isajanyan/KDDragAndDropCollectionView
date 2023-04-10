@@ -170,7 +170,7 @@ open class KDDragAndDropCollectionView: UICollectionView, KDDraggable, KDDroppab
                 self.deleteItems(at: [existngIndexPath])
             }, completion: { complete -> Void in
                 self.animating = false
-                self.reloadData()
+//                self.reloadData()
             })
         }
         
@@ -351,7 +351,7 @@ open class KDDragAndDropCollectionView: UICollectionView, KDDraggable, KDDroppab
                     self.moveItem(at: existingIndexPath, to: indexPath)
                 }, completion: { (finished) -> Void in
                     self.animating = false
-                    self.reloadData()
+//                    self.reloadData()
                     
                 })
                 
@@ -393,7 +393,7 @@ open class KDDragAndDropCollectionView: UICollectionView, KDDraggable, KDDroppab
                 self.deleteItems(at: [existngIndexPath])
             }, completion: { (finished) -> Void in
                 self.animating = false;
-                self.reloadData()
+//                self.reloadData()
             })
             
         }
