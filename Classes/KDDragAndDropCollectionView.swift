@@ -37,6 +37,9 @@ public protocol KDDragAndDropCollectionViewDataSource : UICollectionViewDataSour
     /* optional */ func collectionView(_ collectionView: UICollectionView, cellIsDroppableAtIndexPath indexPath: IndexPath) -> Bool
     
     /* optional */ func collectionView(_ collectionView: UICollectionView, stylingRepresentationView: UIView) -> UIView?
+    
+    /* optional */ func collectionViewDidStartDragging(_ collectionView: UICollectionView)
+    /* optional */ func collectionViewDidStopDragging(_ collectionView: UICollectionView)
 }
 
 extension KDDragAndDropCollectionViewDataSource {
@@ -130,7 +133,9 @@ open class KDDragAndDropCollectionView: UICollectionView, KDDraggable, KDDroppab
         self.draggingPathOfCellBeingDragged = self.indexPathForItem(at: point)
         
         self.reloadData()
-        
+        if let dataSource = self.dataSource as? KDDragAndDropCollectionViewDataSource {
+            dataSource.collectionViewDidStartDragging(self)
+        }
     }
     
     public func stopDragging() -> Void {
@@ -144,7 +149,9 @@ open class KDDragAndDropCollectionView: UICollectionView, KDDraggable, KDDroppab
         self.draggingPathOfCellBeingDragged = nil
         
         self.reloadData()
-        
+        if let dataSource = self.dataSource as? KDDragAndDropCollectionViewDataSource {
+            dataSource.collectionViewDidStopDragging(self)
+        }
     }
     
     public func dragDataItem(_ item : AnyObject) -> Void {
